@@ -5,8 +5,7 @@
             
             
             <p>
-                <a href = "https://www.kaggle.com/tristan581/17k-apple-app-store-strategy-games">Original data here!!!</a>
-                Big list of apps for IOS!!!
+                Results here!!!
             </p>
             
 
