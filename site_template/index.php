@@ -1,4 +1,4 @@
-<?php inclue("topbit.php") ?>
+<?php include("topbit.php") ?>
 
         <div class="box main">
             <h2>Welcome</h2>
@@ -13,4 +13,4 @@
             
         </div> <!-- / main -->
         
-<?php inclue("bottombit.php") ?>
+<?php include("bottombit.php") ?>
