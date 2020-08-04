@@ -1,13 +1,82 @@
-<?php include("topbit.php") ?>
+<?php include("topbit.php");
+    
+    $find_sql = "SELECT * FROM `L2_prac_game_details`
+    JOIN L2_prac_genre ON (L2_prac_game_details.GenreID = L2_prac_genre.GenreID)
+    JOIN L2_prac_developer ON (L2_prac_game_details.DeveloperID = L2_prac_developer.DeveloperID)
+    ";
+    $find_query = mysqli_query($dbconnect, $find_sql);
+    $find_rs = mysqli_fetch_assoc($find_query);
+    $count = mysqli_num_rows($find_query);
+
+?>
 
         <div class="box main">
-            <h2>Welcome</h2>
+            <h2>All Results</h2>
             
             
-            <p>
-                Results here!!!
-            </p>
+            <?php
             
+            if($count < 1) {
+            
+            ?>
+            
+            <div class = "error">
+                
+                Sorry! No results!!!!
+            
+            </div> <!-- end error -->
+            
+            <?php
+            
+            } // end no results if
+            
+            else {
+                do {
+
+            ?>
+            
+            <div class = "results">
+                <span class = "sub_heading">
+                    <a href = "<?php echo $find_rs["URL"]; ?>">
+                        <?php echo $find_rs["Name"]; ?>
+                    </a>
+                </span>
+                
+                <p>
+                    <b>Genre</b>:
+                    <?php echo $find_rs["GenreName"]; ?>
+                    
+                    <br />
+                    
+                    <b>Developer</b>:
+                    <?php echo $find_rs["DevName"]; ?>
+                    
+                    <br />
+                    
+                    <b>Rating</b>:
+                    <?php echo $find_rs["User Rating"]; ?>
+                    
+                    (based on <?php echo $find_rs["Rating Count"]; ?> votes)
+                
+                    <hr />
+                
+                    <?php echo $find_rs["Description"]; ?>
+                
+                </p>
+                
+                
+                
+                
+            </div> <!-- / results -->
+            
+            <?php
+                    
+                } // end results "do"
+                
+                while($find_rs = mysqli_fetch_assoc($find_query));
+                
+            } // end else
+            ?>
 
             
         </div> <!-- / main -->
