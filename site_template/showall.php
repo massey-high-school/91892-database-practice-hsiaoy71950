@@ -36,12 +36,56 @@
             ?>
             
             <div class = "results">
-                <span class = "sub_heading">
-                    <a href = "<?php echo $find_rs["URL"]; ?>">
-                        <?php echo $find_rs["Name"]; ?>
-                    </a>
-                </span>
+                <div class = "flex-container">
+                    <div>
+                        <span class = "sub_heading">
+                            <a href = "<?php echo $find_rs["URL"]; ?>">
+                                <?php echo $find_rs["Name"]; ?>
+                            </a>   
+                        </span>
+                </div>  <!-- Title -->
                 
+                <?php 
+                    
+                        if($find_rs["Subtitle"] != "")  {
+                            
+                    ?>
+                            
+                    <div>
+                    
+                        &nbsp; &nbsp; | &nbsp; &nbsp;
+                        <?php echo $find_rs["Subtitle"]; ?>
+                        
+                    </div>  <!-- / subtitle -->
+                    
+                    <?php 
+                        }
+                    
+                        if($find_rs["Price"] == 0)  {
+                            
+                    ?>
+                            
+                    <div>
+                    
+                        &nbsp; &nbsp; | &nbsp; &nbsp; Free!!!
+                        
+                    </div>  <!-- / subtitle -->
+                    
+                    <?php 
+                        }
+                    else {
+                    ?>
+                    
+                    &nbsp; &nbsp; | &nbsp; &nbsp; $
+                    <?php echo $find_rs["Price"]; ?>
+                        
+                    <?php 
+                        
+                    }
+                    
+                    ?>
+                    
+                    </div>  <!-- Flex Container -->
                 <p>
                     <b>Genre</b>:
                     <?php echo $find_rs["GenreName"]; ?>
