@@ -69,20 +69,38 @@
                     
                         &nbsp; &nbsp; | &nbsp; &nbsp; Free!!!
                         
-                    </div>  <!-- / subtitle -->
+                    </div>  <!-- / Price -->
                     
                     <?php 
+                            
                         }
+                    
                     else {
                     ?>
                     
-                    &nbsp; &nbsp; | &nbsp; &nbsp; $
-                    <?php echo $find_rs["Price"]; ?>
+                    <div>
+                    
+                        &nbsp; &nbsp; | &nbsp; &nbsp; $
+                        <?php echo $find_rs["Price"]; ?>
+                        
+                    </div>  <!-- / Price -->
                         
                     <?php 
                         
                     }
                     
+                        if($find_rs["In App"] == 0)  {
+                            
+                    ?>
+                            
+                    <div>
+                        
+                        &nbsp;(In-App Purchases)
+                        
+                    </div>  <!-- / In app -->
+                    
+                    <?php 
+                        }
                     ?>
                     
                     </div>  <!-- Flex Container -->
