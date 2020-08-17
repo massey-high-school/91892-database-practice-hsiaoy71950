@@ -105,21 +105,28 @@
                     
                     </div>  <!-- Flex Container -->
                 <p>
-                    <b>Genre</b>:
-                    <?php echo $find_rs["GenreName"]; ?>
-                    
-                    <br />
-                    
+                    <div class = "flex-container">
+                    <div class="star-ratings-sprite">
+                        <span style="width:<?php echo $find_rs["User Rating"] / 5 * 100 ?>%" class="star-ratings-sprite-rating">
+                        </span>
+                    </div>
+                    (<?php echo $find_rs["User Rating"] ?> based on <?php echo $find_rs["Rating Count"] ?> votes)
+                    </div>
+                
                     <b>Developer</b>:
                     <?php echo $find_rs["DevName"]; ?>
-                    
-                    <br />
-                    
-                    <b>Rating</b>:
-                    <?php echo $find_rs["User Rating"]; ?>
-                    
-                    (based on <?php echo $find_rs["Rating Count"]; ?> votes)
                 
+                    <br />
+                
+                    <b>Genre</b>:
+                    <?php echo $find_rs["GenreName"]; ?>
+                
+                    <br />
+                
+                    Suitable for ages
+                    <b><?php echo $find_rs["Age"]; ?></b>
+                    and up
+                    
                     <hr />
                 
                     <?php echo $find_rs["Description"]; ?>
