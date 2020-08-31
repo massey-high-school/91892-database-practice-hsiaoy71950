@@ -188,6 +188,29 @@ input {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+input[type="checkbox"] {
+    display: inline;
+    width: auto;
+}
+
+input[type="radio"] {
+    height: 10px;
+    display: inline;
+    width: auto;
+}
+
+select{
+    height: 40px;
+}
+
+.adv-cost {
+    width: 90%;
+    margin-bottom: 5px;
+}
+select {
+    height: 40px;
+}
 .free{
     
     font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial,
@@ -199,6 +222,54 @@ input {
     border: 1px solid #636263;
     border-radius: 5px;
 }
+.advanced-frame{
+    border-radius: 20px;
+    background-color: #f4ff7e;
+    border: solid 1px  #4f570b;
+    padding: 5px;
+}
+.advanced-button {
+    margin: auto;
+    width: 95%;
+    border-radius: 5px;
+    background-color: #2F480D;
+    font-size: 105%;
+}
+.adv {
+    width: 95%;
+    margin-bottom: 5px;
+}
+.adv-txt {
+    vertical-align: middle;
+    margin: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.add-entry{
+    max-width: 550px;
+    margin: auto;
+}
+.add-field {
+    width: 95%;
+    margin-bottom: 5px;
+}
+.star-ratings-sprite {
+  background: url("../images/star-rating-sprite.png") repeat-x;
+  font-size: 0;
+  height: 21px;
+  line-height: 0;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 110px;
+  /* margin: 0 auto; */
+  
+}
 
-
-
+.star-ratings-sprite-rating {
+    background: url("../images/star-rating-sprite.png") repeat-x;
+    background-position: 0%;
+    background-position: 0 100%;
+    float: left;
+    height: 21px;
+    display: block;
+}
