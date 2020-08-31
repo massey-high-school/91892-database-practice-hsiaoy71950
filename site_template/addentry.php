@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($has_errors == "no") {
     
     //go to success page
+    header('Location: add_success.php')
     //get dev id if exists
     $dev_sql ="SELECT * FROM `L2_prac_developer` WHERE `DevName` LIKE '$dev_name'";
     $dev_query=mysqli_query($dbconnect,$dev_sql);
