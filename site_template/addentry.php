@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($has_errors == "no") {
     
     //go to success page
-    header('Location: add_success.php')
+    header('Location: add_success.php');
     //get dev id if exists
     $dev_sql ="SELECT * FROM `L2_prac_developer` WHERE `DevName` LIKE '$dev_name'";
     $dev_query=mysqli_query($dbconnect,$dev_sql);
@@ -80,6 +80,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // add new entry to database
     $add_entry_sql = "INSERT INTO `hsiaoy71950`.`L2_prac_game_details` (`ID`, `Name`, `Subtitle`, `URL`, `GenreID`, `DeveloperID`, `Age`, `User Rating`, `Rating Count`, `Price`, `In App`, `Description`) VALUES (NULL, '$app_name', '$subtitle', '$url', '$genreID', '$developerID', '$age', '$rating', '$rate_count', '$cost', '$inapp', '$description')";
     $add_entry_query = mysqli_query($dbconnect, $add_entry_sql);
+        
+    // get id for next page
+    $getid_sql ="SELECT * FROM `L2_prac_game_details`
+        WHERE `Name` LIKE '$app_name'
+        AND `Subtitle` LIKE '$subtitle'
+        AND `URL` LIKE '$url'
+        AND `GenreID` LIKE '$genreID'
+        AND `DeveloperID` LIKE '$developerID'
+        AND `Age` = $age
+        AND `User Rating` = $rating
+        AND `Rating Count` = $rate_count
+        AND `Price` = $cost
+        AND `In App` = $inapp";
+    $getid_query=mysqli_query($dbconnect, $getid_sql);
+    $getid_rs =mysqli_fetch_assoc($getid_query);
+        
+    $ID = $getid_rs['ID'];
+    $_SESSION['ID'] = $ID;
+        
+    echo "ID: ".$ID;
+        
     } //end of no errors if
 } //end of submit button
 
@@ -104,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if($genreID=="") {
                     ?>
             
-                <option value='' disabled selected>Genre (Choose something)...</option>
+                <option value='' selected>Genre (Choose something)...</option>
                 <?php
                     }
                 else{
