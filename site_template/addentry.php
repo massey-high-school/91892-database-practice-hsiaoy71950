@@ -22,6 +22,14 @@ $description = "";
 
 $has_errors = "no";
 
+// set up error field colors / visibility (no errors at first)
+$app_error = "no-error";
+
+$app_field = "form-ok";
+
+$url_error = "no-error";
+
+$url_field = "form-ok";
 // code form submitting form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $app_name = mysqli_real_escape_string($dbconnect, $_POST['app_name']);
@@ -48,6 +56,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = mysqli_real_escape_string($dbconnect, $_POST['description']);
     
     //error checking here
+    
+    // Check app name not blank
+    
+    if ($app_name == "") {
+        $has_errors = "yes";
+        $app_error = "error-text";
+        $app_field = "form-error";
+        
+        if ($url == "") {
+        $has_errors = "yes";
+        $app_error = "error-text";
+        $app_field = "form-error";
+            
+        if ($app_name == "") {
+        $has_errors = "yes";
+        $app_error = "error-text";
+        $app_field = "form-error";
+        
+    }
     
     //if no errors
     if ($has_errors == "no") {
@@ -113,7 +140,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             
             <!-- App Name (req) -->
-                <input class="add-field" type="text" name="app_name" value="<?php echo $app_name; ?>" placeholder="App Name (required)..."/>
+            <div class="<?php echo $app_error; ?>">
+                Fill App Name field please!!!
+            </div>    
+                <input class="add-field <?php echo $app_field ?>" type="text" name="app_name" value="<?php echo $app_name; ?>" placeholder="App Name (required)..."/>
             <!-- Subtitle (optional) -->
                 <input class="add-field" type="text" name="subtitle" value="<?php echo $subtitle; ?>" placeholder="Subtitle (optional)..."/>
             <!-- URL (req, must start http://) -->

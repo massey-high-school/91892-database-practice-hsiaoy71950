@@ -273,3 +273,20 @@ select {
     height: 21px;
     display: block;
 }
+
+/* form rror css */
+
+/* field bg */
+.form-ok {
+    background-color: #fff;
+}
+.form-error {
+    background-color: #ff9e9e;
+}
+/* error messages */
+.no-error {
+    display: none;
+}
+.error-text {
+    color: darkred;
+}
