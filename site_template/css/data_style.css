@@ -232,7 +232,7 @@ select {
     margin: auto;
     width: 95%;
     border-radius: 5px;
-    background-color: #2F480D;
+    background-color: c;
     font-size: 105%;
 }
 .adv {
@@ -289,4 +289,7 @@ select {
 }
 .error-text {
     color: darkred;
+}
+.set-zero-text {
+    color: darkgreen;
 }

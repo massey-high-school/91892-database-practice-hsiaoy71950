@@ -30,6 +30,30 @@ $app_field = "form-ok";
 $url_error = "no-error";
 
 $url_field = "form-ok";
+
+$genre_error = "no-error";
+
+$genre_field = "form-ok";
+
+$dev_error = "no-error";
+
+$dev_field = "form-ok";
+
+$age_error = "no-error";
+
+$age_field = "form-ok";
+
+$rating_error = "no-error";
+
+$rating_field = "form-ok";
+
+$rate_count_error = "no-error";
+
+$rate_count_field = "form-ok";
+
+$cost_error = "no-error";
+
+$cost_field = "form-ok";
 // code form submitting form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $app_name = mysqli_real_escape_string($dbconnect, $_POST['app_name']);
@@ -63,17 +87,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $has_errors = "yes";
         $app_error = "error-text";
         $app_field = "form-error";
-        
-        if ($url == "") {
+    }
+    if ($url == "") {
         $has_errors = "yes";
-        $app_error = "error-text";
-        $app_field = "form-error";
-            
-        if ($app_name == "") {
+        $url_error = "error-text";
+        $url_field = "form-error";
+    }
+    if ($genreID == "") {
         $has_errors = "yes";
-        $app_error = "error-text";
-        $app_field = "form-error";
-        
+        $genre_error = "error-text";
+        $genre_field = "form-error";
+    }
+    if ($dev_name == "") {
+        $has_errors = "yes";
+        $dev_error = "error-text";
+        $dev_field = "form-error";
+    }
+    if ($age == "" || $age == 0) {
+        $age = 0;
+        $age_message = "The age has been set to 0 (all ages)";
+        $age_error = "set-zero-text";
+        $age_field = "form-ok";
+    }
+    else if (!is_numeric($age) || $age < 0) {
+        $has_errores = "yes";
+        $age_message = "Please enter a number that is 0 or above";
+        $age_error = "error-text";
+        $age_field = "form-error";
+    }
+    if (!is_numeric($rating) || $rating < 0 || $rating > 5) {
+        $has_errors = "yes";
+        $rating_error = "error-text";
+        $rating_field = "form-error";
+    }
+    if (!ctype_digit($rate_count) || $rate_count < 1) {
+        $has_errors = "yes";
+        $rate_count_error = "error-text";
+        $rate_count_field = "form-error";
+    }
+    if ($cost == "" || $cost == 0) {
+        $cost = 0;
+        $cost_message = "The price has been set to 0 (free)";
+        $cost_error = "set-zero-text";
+        $cost_field = "form-ok";
+    }
+    else if (!is_numeric($cost) || $cost < 0) {
+        $has_errores = "yes";
+        $cost_message = "Please enter a number that is 0 or above";
+        $cost_error = "error-text";
+        $cost_field = "form-error";
+    }
+    if ($description == "") {
+        $has_errors = "yes";
+        $description_error = "error-text";
+        $description_field = "form-error";
     }
     
     //if no errors
@@ -147,20 +214,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Subtitle (optional) -->
                 <input class="add-field" type="text" name="subtitle" value="<?php echo $subtitle; ?>" placeholder="Subtitle (optional)..."/>
             <!-- URL (req, must start http://) -->
-                <input class="add-field" type="text" name="url" value="<?php echo $url; ?>" placeholder="URL (required)..."/>
+            <div class="<?php echo $url_error; ?>">
+                Fill URL field please!!!
+            </div>   
+                <input class="add-field <?php echo $url_field ?>" type="text" name="url" value="<?php echo $url; ?>" placeholder="URL (required)..."/>
             <!-- Genre dropdown (req) -->
+            <div class="<?php echo $genre_error; ?>">
+                Choose a genre please!!!
+            </div>   
                 <select class="adv" name="genre">
                     
                 <?php
                 if($genreID=="") {
                     ?>
             
-                <option value='' selected>Genre (Choose something)...</option>
+                <option class="<? php echo $genre_field ?>" value='' selected>Genre (Choose something)...</option>
                 <?php
                     }
                 else{
                     ?>
-                <option value="<?php echo $genreID; ?>" selected><?php echo $genre; ?></option>
+                <option class="<? php echo $genre_field ?>" value="<?php echo $genreID; ?>" selected><?php echo $genre; ?></option>
                 <?php
                     }
                     ?>
@@ -170,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                 do {
                 ?>
-                <option value="<?php echo $genre_rs['GenreID']; ?>"><?php echo $genre_rs['GenreName']; ?></option>
+                <option class="<? php echo $genre_field ?>" value="<?php echo $genre_rs['GenreID']; ?>"><?php echo $genre_rs['GenreName']; ?></option>
             
                 <?php
                 
@@ -181,15 +254,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
                 </select>
             <!-- Dev Name (req) -->
-                <input class="add-field" type="text" name="dev_name" value="<?php echo $dev_name; ?>" placeholder="Developer Name (required)..."/>
+            <div class="<?php echo $dev_error; ?>">
+                Fill developer name field please!!!
+            </div>   
+                <input class="add-field <?php echo $dev_field ?>" type="text" name="dev_name" value="<?php echo $dev_name; ?>" placeholder="Developer Name (required)..."/>
             <!-- Age (optional, set to 0 if blank) -->
-                <input class="add-field" type="text" name="age" value="<?php echo $age; ?>" placeholder="Age (0 for all)..."/>
+            <div class="<?php echo $age_error; ?>">
+                <?php echo $age_message; ?>
+            </div> 
+                <input class="add-field <?php echo $age_field; ?>" type="text" name="age" value="<?php echo $age; ?>" placeholder="Age (0 for all)..."/>
             <!-- Rating (# between 0-5, 1dp) -->
-                <input class="add-field" type="text" name="rating" value="<?php echo $rating; ?>" placeholder="Rating (0-5)"/>
+            <div class="<?php echo $rating_error; ?>">
+                Rating must be a number between 0 and 5!!!
+            </div>   
+                <input class="add-field <?php echo $rating_field ?>" type="text" name="rating" value="<?php echo $rating; ?>" placeholder="Rating (0-5)"/>
             <!-- # of ratings (int more than 0) -->
-                <input class="add-field" type="text" name="rate_count" value="<?php echo $rate_count; ?>" placeholder="# of Ratings"/>
+            <div class="<?php echo $rate_count_error; ?>">
+                Rating count must be an  integer above 0!!!
+            </div>   
+                <input class="add-field <?php echo $rate_count_field ?>" type="text" name="rate_count" value="<?php echo $rate_count; ?>" placeholder="# of Ratings"/>
             <!-- cost (decimal 2dp, must be >0) -->
-                <input class="add-field" type="text" name="cost" value="<?php echo $cost; ?>" placeholder="Cost (number only)"/>
+            <div class="<?php echo $cost_error; ?>">
+                <?php echo $cost_message; ?>
+            </div> 
+                <input class="add-field <?php echo $cost_field; ?>" type="text" name="cost" value="<?php echo $cost; ?>" placeholder="Cost (number only)"/>
                 
                 <br /><br/>
             <!-- in app purchase radio buttons -->
@@ -218,6 +306,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br />
                 
             <!-- description -->
+            <div class="<?php echo $description_error; ?>">
+                Fill description field please!!!
+            </div> 
                 <textarea class="add-field <?php echo $description_field?>" name="description" placeholder="Description..." rows="6"><?php echo $description; ?></textarea>
             <!-- submit button -->
             <p>
