@@ -17,7 +17,7 @@
 
         <div class="box main">
             <h2>Congratulations!!!</h2>
-            <p>You have added th following entry</p>
+            <p>You have added the following entry</p>
             
             <?php include("results.php") ?>
             
