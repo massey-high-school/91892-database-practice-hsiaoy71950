@@ -54,6 +54,10 @@ $rate_count_field = "form-ok";
 $cost_error = "no-error";
 
 $cost_field = "form-ok";
+
+$description_error = "no-error";
+
+$description_field = "form-ok";
 // code form submitting form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $app_name = mysqli_real_escape_string($dbconnect, $_POST['app_name']);
